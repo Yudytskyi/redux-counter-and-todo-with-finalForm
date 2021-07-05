@@ -1,0 +1,114 @@
+//  common styles
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 16px;
+  background-color: rgb(172 146 193 / 50%);
+  font: 2em 'Times New Roman';
+  text-align: center;
+}
+
+.title {
+  font-size: 2em;
+  color: white;
+  text-shadow: 0 4px 0 #000000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0;
+  }
+}
+
+.article {
+  flex-direction: column;
+}
+.section {
+  min-width: 80%;
+  font-family: sans-serif;
+  font-size: 1em;
+  line-height: 1em;
+  text-align: left;
+  border: 1px solid #ccc;
+  padding: 16px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.navbar {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+a {
+  display: block;
+  text-align: center;
+  color: #222;
+}
+li {
+  list-style-type: none;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: #222;
+}
+
+.inputs {
+  display: flex;
+  width: 100%;
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+  input {
+    width: 100%;
+    color: #6b6767;
+    font-size: 1em;
+    line-height: 1em;
+    font-style: italic;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  line-height: 1em;
+
+  button {
+    color: #333;
+    white-space: nowrap;
+    min-height: 1em;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #1b578b;
+
+    &[disabled] {
+      color: #333;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

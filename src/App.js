@@ -1,8 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { HomePage } from './pages';
+import HomePage from './pages/HomePage';
 
-const TodoPage = lazy(() => import('./pages/TodoPage/ReduxTodoPage'));
+const TodoPage = lazy(() => import('./pages/TodoPage'));
+const ReactFinalFormExample = lazy(() =>
+  import('./components/ReactFinalFormExample')
+);
 const CounterPage = lazy(() => import('./pages/CounterPage/ReduxCounterPage'));
 
 function App() {
@@ -12,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/todo" component={TodoPage} />
           <Route path="/counter" component={CounterPage} />
+          <Route path="/example" component={ReactFinalFormExample} />
           <Route path="/" exact component={HomePage} />
         </Switch>
       </Suspense>

@@ -4,50 +4,35 @@ const initialState = {
   tasks: [
     { name: 'first task', isDone: false },
     { name: 'second task', isDone: true },
+    { name: 'third task', isDone: false },
   ],
-  data: {},
 };
 
 const todoReducer = (state = initialState, action) => {
+  const { tasks } = state;
   const { type, data } = action;
+  const taskName = data?.task?.taskName ?? '';
+  const taskIndex = data?.taskIndex;
+  const newTasks = [...tasks];
 
   switch (type) {
     case TODO_ACTION_TYPES.ADD_TASK_ACTION: {
-      const { tasks } = state;
-      const {
-        taskName: { newTask: name },
-      } = data;
-
-      return {
-        ...state,
-        tasks: [...tasks, { name, isDone: false }],
-      };
+      newTasks.push({ name: taskName, isDone: false });
+      return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.UPDATE_TASK_ACTION: {
-      // const { tasks } = state;
-      // const { taskIndex, newTaskName } = data;
-      // const newTasks = [...tasks];
-      // newTasks[taskIndex] = { ...newTasks[taskIndex], newTaskName };
-      // return { ...state, tasks: newTasks };
+      newTasks[taskIndex] = { ...newTasks[taskIndex], name: taskName };
+      // console.log({ ...state, tasks: newTasks });
+      return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.DONE_TASK_ACTION: {
-      const {
-        tasks,
-        data: { taskIndex },
-      } = state;
-      const newTasks = [...tasks];
-      const task = newTasks[taskIndex];
-      task.isDone = !task.isDone;
-      newTasks.splice(taskIndex, 1, task);
-
+      const { name, isDone } = newTasks[taskIndex];
+      console.log(`name: ${name} done: ${isDone} index: ${taskIndex}`);
+      newTasks.splice(taskIndex, 1, { name, isDone: !isDone });
       return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.REMOVE_TASK_ACTION: {
-      const { tasks } = state;
-      const { taskIndex } = data;
-      const newTasks = [...tasks];
-      newTasks.splice(taskIndex + 1, 1);
-
+      newTasks.splice(taskIndex, 1);
       return { ...state, tasks: newTasks };
     }
     default:

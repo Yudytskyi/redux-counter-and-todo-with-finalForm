@@ -1,13 +1,11 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Input } from '../formControl';
-// import { createTodoAddTask } from '../../../Redux/actions/todo/index';
-import styles from './styles.module.sass';
 
 const Form = ({ handleSubmit, pristine, reset, submitting }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <div className={styles.inputTask}>
+      <div>
         <label>New task</label>
         <div>
           <Field

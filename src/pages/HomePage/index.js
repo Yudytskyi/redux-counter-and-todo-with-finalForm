@@ -1,14 +1,24 @@
 import React from 'react';
+import styles from './styles.module.scss';
 
 const HomePage = () => {
   return (
-    <article>
-      <h1>HomePage</h1>
-      <a href={'/counter'}>Counter</a>
-      <br />
-      <br />
-      <a href={'/todo'}>Todo List</a>
-    </article>
+    <main className={styles.page}>
+      <h1 className={styles.title}>HomePage</h1>
+      <nav className={styles.navbar}>
+        <ul>
+          <li>
+            <a href={'/counter'}>Counter</a>
+          </li>
+          <li>
+            <a href={'/todo'}>Todo Page</a>
+          </li>
+          <li>
+            <a href={'/example'}>React Final Form Example</a>
+          </li>
+        </ul>
+      </nav>
+    </main>
   );
 };
 
