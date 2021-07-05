@@ -5,7 +5,10 @@ import styles from './styles.module.scss';
 import { createTodoAddTask } from '../../Redux/actions/todo';
 
 const TodoForm = ({ addTask }) => {
-  const onSubmit = values => addTask(values.newTask);
+  const onSubmit = (values, form) => {
+    addTask(values.newTask);
+    form.reset();
+  };
 
   return (
     <Form

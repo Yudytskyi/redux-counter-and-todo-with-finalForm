@@ -14,17 +14,15 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
   useEffect(() => {
     document.querySelector(`#index${taskIndex}`)?.focus();
   });
-  const onSubmit = values => {
+  const onSubmit = (values, form) => {
     setIsOpen(!isOpen);
-    updateTask(taskIndex, values);
+    values.taskName && updateTask(taskIndex, values);
+    form.reset();
   };
-  console.log(isOpen);
 
   return (
-    <Form
-      onSubmit={onSubmit}
-      initialValues={{ name, employed: isDone }}
-      render={({ handleSubmit, form, submitting, pristine, values }) => (
+    <Form onSubmit={onSubmit} initialValues={{ name, employed: isDone }}>
+      {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form className={styles.todoForm} onSubmit={handleSubmit}>
             <div className={styles.inputs}>
@@ -34,14 +32,15 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
               {isOpen && (
                 <Field
                   id={`index${taskIndex}`}
-                  className={isOpen ? styles.inputIsOpen : styles.input}
+                  className={!submitting ? styles.inputIsOpen : styles.input}
                   name="taskName"
                   component="input"
                   type="text"
                   placeholder="input updated task"
                   onBlur={() => {
                     setIsOpen(!isOpen);
-                    updateTask(taskIndex, values);
+                    console.log(isOpen);
+                    values.taskName && updateTask(taskIndex, values);
                   }}
                 />
               )}
@@ -60,7 +59,7 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
           </form>
         </>
       )}
-    />
+    </Form>
   );
 };
 

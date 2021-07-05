@@ -22,7 +22,6 @@ const todoReducer = (state = initialState, action) => {
     }
     case TODO_ACTION_TYPES.UPDATE_TASK_ACTION: {
       newTasks[taskIndex] = { ...newTasks[taskIndex], name: taskName };
-      // console.log({ ...state, tasks: newTasks });
       return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.DONE_TASK_ACTION: {

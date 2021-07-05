@@ -15,15 +15,15 @@ const ReactFinalFormExample = () => (
         <li>
           <a href={'/'}>Home</a>
         </li>
-        {/* <li>
+        <li>
           <a href="https://github.com/erikras/react-final-form#-react-final-form">
             Read Docs
           </a>
-        </li> */}
+        </li>
       </ul>
     </nav>
-    {/* <h1>🏁 React Final Form</h1>
-    <h2>Fields Component</h2> */}
+    <h1>🏁 React Final Form</h1>
+    <h2>Fields Component</h2>
     <Form
       onSubmit={onSubmit}
       initialValues={{ employed: true }}
@@ -38,7 +38,7 @@ const ReactFinalFormExample = () => (
               placeholder="First Name"
             />
           </div>
-          {/* <div>
+          <div>
             <label>Last Name</label>
             <Field
               name="lastName"
@@ -54,7 +54,7 @@ const ReactFinalFormExample = () => (
           <div>
             <label>Notes</label>
             <Field name="notes" component="textarea" placeholder="Notes" />
-          </div> */}
+          </div>
           <div className={styles.btn}>
             <button
               className={styles.btnPrimary}
@@ -72,22 +72,22 @@ const ReactFinalFormExample = () => (
               Reset
             </button>
           </div>
-          {/* <div>
+          <div>
             <label>Values</label>
             <Field name="values" component="input" type="checkbox" />
-          </div> */}
-          {/* {values.values && <pre>{JSON.stringify(values, 0, 2)}</pre>}
+          </div>
+          {values.values && <pre>{JSON.stringify(values, 0, 2)}</pre>}
           <div>
             <label>Full Values</label>
             <Field name="fullValues" component="input" type="checkbox" />
-          </div> */}
-          {/* {values.fullValues && (
+          </div>
+          {values.fullValues && (
             <FieldsInfo names={['firstName', 'lastName', 'employed', 'notes']}>
               {fieldsState => (
                 <pre>{JSON.stringify(fieldsState, undefined, 3)}</pre>
               )}
             </FieldsInfo>
-          )} */}
+          )}
         </form>
       )}
     />
