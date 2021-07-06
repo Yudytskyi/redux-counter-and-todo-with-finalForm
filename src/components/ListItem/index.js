@@ -18,15 +18,24 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
     setIsOpen(!isOpen);
     values.taskName && updateTask(taskIndex, values);
     form.reset();
+    console.log(values);
   };
 
   return (
-    <Form onSubmit={onSubmit} initialValues={{ name, employed: isDone }}>
+    <Form onSubmit={onSubmit} initialValues={{ name, isDone }}>
       {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form className={styles.todoForm} onSubmit={handleSubmit}>
             <div className={styles.inputs}>
-              <p className={styles.todoName} onClick={() => setIsOpen(!isOpen)}>
+              <p
+                className={styles.todoName}
+                onClick={() => {
+                  if (!values.isDone) {
+                    // values.taskName = name;
+                    setIsOpen(!isOpen);
+                  }
+                }}
+              >
                 {name}
               </p>
               {isOpen && (
@@ -39,15 +48,16 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
                   placeholder="input updated task"
                   onBlur={() => {
                     setIsOpen(!isOpen);
-                    console.log(isOpen);
-                    values.taskName && updateTask(taskIndex, values);
+                    if (values.taskName) {
+                      updateTask(taskIndex, values);
+                    }
                   }}
                 />
               )}
             </div>
             <div className={styles.buttons}>
               <Field
-                name="employed"
+                name="isDone"
                 component="input"
                 type="checkbox"
                 onChange={() => doneTask(taskIndex)}
@@ -63,7 +73,6 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
   );
 };
 
-const mapStateToProps = ({ todo }) => todo;
 const mapDispatchToProps = dispatch => ({
   updateTask: (taskIndex, task) =>
     dispatch(createTodoUpdateTask(taskIndex, task)),
@@ -71,4 +80,4 @@ const mapDispatchToProps = dispatch => ({
   removeTask: taskIndex => dispatch(createTodoRemoveTask(taskIndex)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
+export default connect(null, mapDispatchToProps)(ListItem);

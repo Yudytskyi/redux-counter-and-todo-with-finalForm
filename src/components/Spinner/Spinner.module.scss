@@ -1,0 +1,15 @@
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  align-self: center;
+}
+
+.override {
+  border-color: #46568a;
+  border: 30px solid #46568a;
+  animation: animation-s8tf20 1s 0s infinite cubic-bezier(1, 0, 1, 0.6);
+}
