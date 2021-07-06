@@ -1,17 +1,18 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Spinner } from './components';
 import HomePage from './pages/HomePage';
 
 const TodoPage = lazy(() => import('./pages/TodoPage'));
 const ReactFinalFormExample = lazy(() =>
-  import('./components/ReactFinalFormExample')
+  import('./pages/ReactFinalFormExample')
 );
 const CounterPage = lazy(() => import('./pages/CounterPage/ReduxCounterPage'));
 
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<h1>loading...</h1>}>
+      <Suspense fallback={<Spinner />}>
         <Switch>
           <Route path="/todo" component={TodoPage} />
           <Route path="/counter" component={CounterPage} />

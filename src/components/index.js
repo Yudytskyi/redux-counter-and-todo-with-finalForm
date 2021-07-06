@@ -1,6 +1,5 @@
-import TaskForm from './forms/TaskForm';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-import ReactFinalFormExample from './ReactFinalFormExample';
+import Spinner from './Spinner';
 
-export { TodoList, TaskForm, TodoForm, ReactFinalFormExample };
+export { TodoList, TodoForm, Spinner };
