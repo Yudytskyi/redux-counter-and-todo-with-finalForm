@@ -1,13 +1,13 @@
 import TODO_ACTION_TYPES from './types';
 
-export const createTodoAddTask = task => ({
+export const createTodoAddTask = taskName => ({
   type: TODO_ACTION_TYPES.ADD_TASK_ACTION,
-  data: { task },
+  data: { taskName },
 });
 
-export const createTodoUpdateTask = (taskIndex, task) => ({
+export const createTodoUpdateTask = (taskIndex, taskName) => ({
   type: TODO_ACTION_TYPES.UPDATE_TASK_ACTION,
-  data: { taskIndex, task },
+  data: { taskIndex, taskName },
 });
 
 export const createTodoDoneTask = taskIndex => ({

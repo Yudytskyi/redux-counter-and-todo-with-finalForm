@@ -7,7 +7,7 @@ const TodoList = ({ tasks }) => {
     <>
       <h2>todo list</h2>
       {tasks.map((task, index) => (
-        <li>
+        <li key={index}>
           <ListItem task={task} taskIndex={index} />
         </li>
       ))}

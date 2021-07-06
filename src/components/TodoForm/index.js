@@ -5,22 +5,19 @@ import styles from './styles.module.scss';
 import { createTodoAddTask } from '../../Redux/actions/todo';
 
 const TodoForm = ({ addTask }) => {
-  const onSubmit = (values, form) => {
-    addTask(values.newTask);
-    form.reset();
-  };
+  const onSubmit = ({ taskName }, form) => addTask(taskName) && form.reset();
 
   return (
     <Form
       onSubmit={onSubmit}
-      initialValues={{ newTask: '' }}
+      initialValues={{ taskName: '' }}
       render={({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <h2>new task</h2>
           <form className={styles.todoForm} onSubmit={handleSubmit}>
             <div className={styles.inputs}>
               <Field
-                name="newTask"
+                name="taskName"
                 component="input"
                 type="text"
                 placeholder="set a new task"
@@ -52,7 +49,7 @@ const TodoForm = ({ addTask }) => {
 
 const mapStateToProps = state => state;
 const mapDispatchToProps = dispatch => ({
-  addTask: taskName => dispatch(createTodoAddTask({ taskName })),
+  addTask: taskName => dispatch(createTodoAddTask(taskName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);

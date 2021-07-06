@@ -11,49 +11,41 @@ import {
 const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
   var [isOpen, setIsOpen] = useState(false);
   const { name, isDone } = task;
+
   useEffect(() => {
-    document.querySelector(`#index${taskIndex}`)?.focus();
+    document.getElementById(`input_${taskIndex}`)?.focus();
   });
-  const onSubmit = (values, form) => {
+
+  const onSubmit = ({ taskName }) => {
     setIsOpen(!isOpen);
-    values.taskName && updateTask(taskIndex, values);
-    form.reset();
-    console.log(values);
+    taskName && updateTask(taskIndex, taskName);
   };
 
   return (
-    <Form onSubmit={onSubmit} initialValues={{ name, isDone }}>
+    <Form onSubmit={onSubmit} initialValues={{ taskName: name, isDone }}>
       {({ handleSubmit, form, submitting, pristine, values }) => (
         <>
           <form className={styles.todoForm} onSubmit={handleSubmit}>
             <div className={styles.inputs}>
               <p
                 className={styles.todoName}
-                onClick={() => {
-                  if (!values.isDone) {
-                    // values.taskName = name;
-                    setIsOpen(!isOpen);
-                  }
-                }}
+                disabled={isDone}
+                onClick={() => !isDone && setIsOpen(!isOpen)}
               >
                 {name}
+                {isOpen && (
+                  <Field
+                    id={`input_${taskIndex}`}
+                    className={!submitting ? styles.inputIsOpen : styles.input}
+                    name="taskName"
+                    component="input"
+                    type="text"
+                    placeholder="input updated task"
+                    value={name}
+                    onBlur={handleSubmit}
+                  />
+                )}
               </p>
-              {isOpen && (
-                <Field
-                  id={`index${taskIndex}`}
-                  className={!submitting ? styles.inputIsOpen : styles.input}
-                  name="taskName"
-                  component="input"
-                  type="text"
-                  placeholder="input updated task"
-                  onBlur={() => {
-                    setIsOpen(!isOpen);
-                    if (values.taskName) {
-                      updateTask(taskIndex, values);
-                    }
-                  }}
-                />
-              )}
             </div>
             <div className={styles.buttons}>
               <Field

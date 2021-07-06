@@ -6,6 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 56px;
+  color: #6b6767;
+  > * {
+    border-radius: 5px;
+  }
 
   .buttons {
     button {

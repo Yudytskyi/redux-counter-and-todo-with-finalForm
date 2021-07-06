@@ -8,30 +8,30 @@ const initialState = {
   ],
 };
 
-const todoReducer = (state = initialState, action) => {
+const todoReducer = (state = initialState, { type, data }) => {
   const { tasks } = state;
-  const { type, data } = action;
-  const taskName = data?.task?.taskName ?? '';
-  const taskIndex = data?.taskIndex;
   const newTasks = [...tasks];
 
   switch (type) {
     case TODO_ACTION_TYPES.ADD_TASK_ACTION: {
-      newTasks.push({ name: taskName, isDone: false });
+      const { taskName: name } = data;
+      newTasks.push({ name, isDone: false });
       return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.UPDATE_TASK_ACTION: {
-      newTasks[taskIndex] = { ...newTasks[taskIndex], name: taskName };
+      const { taskIndex: index, taskName: name } = data;
+      newTasks[index] = { ...newTasks[index], name };
       return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.DONE_TASK_ACTION: {
-      const { name, isDone } = newTasks[taskIndex];
-      console.log(`name: ${name} done: ${isDone} index: ${taskIndex}`);
-      newTasks.splice(taskIndex, 1, { name, isDone: !isDone });
+      const { taskIndex: index } = data;
+      const { name, isDone } = newTasks[index];
+      newTasks.splice(index, 1, { name, isDone: !isDone });
       return { ...state, tasks: newTasks };
     }
     case TODO_ACTION_TYPES.REMOVE_TASK_ACTION: {
-      newTasks.splice(taskIndex, 1);
+      const { taskIndex: index } = data;
+      newTasks.splice(index, 1);
       return { ...state, tasks: newTasks };
     }
     default:
