@@ -1,11 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import styles from './styles.module.scss';
 import { createTodoAddTask } from '../../Redux/actions/todo';
 
-const TodoForm = ({ addTask }) => {
-  const onSubmit = ({ taskName }, form) => addTask(taskName) && form.reset();
+const TodoForm = () => {
+  const dispatch = useDispatch();
+  const addTask = taskName => dispatch(createTodoAddTask(taskName));
+
+  const onSubmit = ({ taskName }, form) => {
+    addTask(taskName) && form.reset();
+  };
 
   return (
     <Form
@@ -15,7 +20,7 @@ const TodoForm = ({ addTask }) => {
         <>
           <h2>new task</h2>
           <form className={styles.todoForm} onSubmit={handleSubmit}>
-            <div className={styles.inputs}>
+            <div className={styles.inputs} onBlur={handleSubmit}>
               <Field
                 name="taskName"
                 component="input"
@@ -47,9 +52,4 @@ const TodoForm = ({ addTask }) => {
   );
 };
 
-const mapStateToProps = state => state;
-const mapDispatchToProps = dispatch => ({
-  addTask: taskName => dispatch(createTodoAddTask(taskName)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
+export default TodoForm;

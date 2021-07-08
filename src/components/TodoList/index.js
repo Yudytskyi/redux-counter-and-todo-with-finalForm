@@ -1,8 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ListItem from '../ListItem/index';
 
-const TodoList = ({ tasks }) => {
+const TodoList = () => {
+  const tasks = useSelector(state => state.todo.tasks);
   return (
     <>
       <h2>todo list</h2>
@@ -15,6 +16,4 @@ const TodoList = ({ tasks }) => {
   );
 };
 
-const mapStateToProps = ({ todo }) => todo;
-
-export default connect(mapStateToProps)(TodoList);
+export default TodoList;

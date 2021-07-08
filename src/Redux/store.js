@@ -1,12 +1,5 @@
 import { createStore } from 'redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
-export const store = createStore(
-  rootReducer,
-  devToolsEnhancer({
-    hostname: 'localhost',
-    port: 3000,
-    realtime: true,
-  })
-);
+export const store = createStore(rootReducer, composeWithDevTools());

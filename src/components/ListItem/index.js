@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import styles from './styles.module.scss';
 import {
@@ -8,9 +8,15 @@ import {
   createTodoRemoveTask,
 } from '../../Redux/actions/todo';
 
-const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
-  var [isOpen, setIsOpen] = useState(false);
+const ListItem = ({ task, taskIndex }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const { name, isDone } = task;
+  const dispatch = useDispatch();
+
+  const doneTask = () => dispatch(createTodoDoneTask(taskIndex));
+  const updateTask = (taskIndex, taskName) =>
+    dispatch(createTodoUpdateTask(taskName, taskIndex));
+  const removeTask = () => dispatch(createTodoRemoveTask(taskIndex));
 
   useEffect(() => {
     document.getElementById(`input_${taskIndex}`)?.focus();
@@ -18,7 +24,7 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
 
   const onSubmit = ({ taskName }) => {
     setIsOpen(!isOpen);
-    taskName && updateTask(taskIndex, taskName);
+    taskName && updateTask(taskName, taskIndex);
   };
 
   return (
@@ -65,11 +71,4 @@ const ListItem = ({ task, taskIndex, updateTask, doneTask, removeTask }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  updateTask: (taskIndex, task) =>
-    dispatch(createTodoUpdateTask(taskIndex, task)),
-  doneTask: taskIndex => dispatch(createTodoDoneTask(taskIndex)),
-  removeTask: taskIndex => dispatch(createTodoRemoveTask(taskIndex)),
-});
-
-export default connect(null, mapDispatchToProps)(ListItem);
+export default ListItem;
