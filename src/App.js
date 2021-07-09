@@ -1,13 +1,12 @@
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Spinner } from './components';
-import HomePage from './pages/HomePage';
-
-const TodoPage = lazy(() => import('./pages/TodoPage'));
-const ReactFinalFormExample = lazy(() =>
-  import('./pages/ReactFinalFormExample')
-);
-const CounterPage = lazy(() => import('./pages/CounterPage/ReduxCounterPage'));
+import {
+  HomePage,
+  TodoPage,
+  ReactFinalFormExample,
+  CounterPage,
+} from './pages';
 
 function App() {
   return (

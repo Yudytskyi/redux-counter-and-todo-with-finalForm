@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import styles from './styles.module.scss';
@@ -18,7 +18,7 @@ const ListItem = ({ task, taskIndex }) => {
     dispatch(createTodoUpdateTask(taskName, taskIndex));
   const removeTask = () => dispatch(createTodoRemoveTask(taskIndex));
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.getElementById(`input_${taskIndex}`)?.focus();
   });
 
