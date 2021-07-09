@@ -1,8 +1,21 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  createCounterIncrementAction,
+  createCounterDecrementAction,
+  createCounterSetStepAction,
+} from '../../Redux/actions/counter';
 import styles from './styles.module.scss';
 
-const CounterPage = props => {
-  const { value, step, increment, decrement, setStep } = props;
+const CounterPage = () => {
+  const value = useSelector(state => state.counter.value);
+  const step = useSelector(state => state.counter.step);
+
+  const dispatch = useDispatch();
+  const increment = () => dispatch(createCounterIncrementAction());
+  const decrement = () => dispatch(createCounterDecrementAction());
+  const setStep = step => dispatch(createCounterSetStepAction(step));
+
   return (
     <main className={styles.page}>
       <nav className={styles.navbar}>

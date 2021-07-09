@@ -6,7 +6,6 @@ import FieldsInfo from './FieldsInfo';
 const onSubmit = values => {
   window.alert(JSON.stringify(values, 0, 2));
 };
-// const FormExample = ();
 
 const ReactFinalFormExample = () => (
   <main className={styles.reactFinalForm}>
