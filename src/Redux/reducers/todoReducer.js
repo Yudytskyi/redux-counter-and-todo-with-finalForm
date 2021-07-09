@@ -1,4 +1,6 @@
+import produce from 'immer';
 import TODO_ACTION_TYPES from '../actions/todo/types';
+import createReducer from '../services/createReducer';
 
 const initialState = {
   tasks: [
@@ -8,35 +10,37 @@ const initialState = {
   ],
 };
 
-const todoReducer = (state = initialState, { type, data }) => {
-  const { tasks } = state;
-  const newTasks = [...tasks];
+const handlers = {
+  [TODO_ACTION_TYPES.ADD_TASK_ACTION]: produce((draftState, action) => {
+    const {
+      data: { taskName: name },
+    } = action;
+    draftState.tasks.push({ name, isDone: false });
+  }),
 
-  switch (type) {
-    case TODO_ACTION_TYPES.ADD_TASK_ACTION: {
-      const { taskName: name } = data;
-      newTasks.push({ name, isDone: false });
-      return { ...state, tasks: newTasks };
-    }
-    case TODO_ACTION_TYPES.UPDATE_TASK_ACTION: {
-      const { taskIndex: index, taskName: name } = data;
-      newTasks[index] = { ...newTasks[index], name };
-      return { ...state, tasks: newTasks };
-    }
-    case TODO_ACTION_TYPES.DONE_TASK_ACTION: {
-      const { taskIndex: index } = data;
-      const { name, isDone } = newTasks[index];
-      newTasks.splice(index, 1, { name, isDone: !isDone });
-      return { ...state, tasks: newTasks };
-    }
-    case TODO_ACTION_TYPES.REMOVE_TASK_ACTION: {
-      const { taskIndex: index } = data;
-      newTasks.splice(index, 1);
-      return { ...state, tasks: newTasks };
-    }
-    default:
-      return state;
-  }
+  [TODO_ACTION_TYPES.UPDATE_TASK_ACTION]: produce((draftState, action) => {
+    const {
+      data: { taskIndex: index, taskName: name },
+    } = action;
+    draftState.tasks[index] = { ...draftState.tasks[index], name };
+  }),
+
+  [TODO_ACTION_TYPES.DONE_TASK_ACTION]: produce((draftState, action) => {
+    const {
+      data: { taskIndex: index },
+    } = action;
+    const { name, isDone } = draftState.tasks[index];
+    draftState.tasks[index] = { name, isDone: !isDone };
+  }),
+
+  [TODO_ACTION_TYPES.REMOVE_TASK_ACTION]: produce((draftState, action) => {
+    const {
+      data: { taskIndex: index },
+    } = action;
+    draftState.tasks.splice(index, 1);
+  }),
 };
+
+const todoReducer = createReducer(initialState, handlers);
 
 export default todoReducer;
