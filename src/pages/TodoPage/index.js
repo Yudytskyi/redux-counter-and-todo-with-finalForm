@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TodoForm, TodoList } from '../../components';
 import styles from './styles.module.scss';
 
 const TodoPage = () => {
+  useEffect(() => {
+    document.getElementById('logoLink').setAttribute('href', '/diamond.png');
+    document.getElementById('title').innerHTML = 'Todo';
+  }, [null]);
+
   return (
     <main className={styles.page}>
       <nav className={styles.navbar}>
