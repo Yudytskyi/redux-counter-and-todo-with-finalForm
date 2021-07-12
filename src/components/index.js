@@ -1,6 +1,4 @@
-import TodoList from './TodoList';
-import TodoForm from './TodoForm';
-import Spinner from './Spinner';
-import ListItem from './ListItem';
-
-export { TodoList, TodoForm, Spinner, ListItem };
+export { TodoList } from './TodoList';
+export { TodoForm } from './TodoForm';
+export { Spinner } from './Spinner';
+export { ListItem } from './ListItem';

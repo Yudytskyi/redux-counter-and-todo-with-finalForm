@@ -8,7 +8,7 @@ import {
   createTodoRemoveTask,
 } from '../../Redux/actions/todo';
 
-const ListItem = ({ task, taskIndex }) => {
+export const ListItem = ({ task, taskIndex }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { name, isDone } = task;
   const dispatch = useDispatch();
@@ -70,5 +70,3 @@ const ListItem = ({ task, taskIndex }) => {
     </Form>
   );
 };
-
-export default ListItem;

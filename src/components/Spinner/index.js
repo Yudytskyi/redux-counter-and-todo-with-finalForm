@@ -7,12 +7,10 @@ const size =
     ? window.innerWidth / 2
     : window.innerHeight / 2;
 
-const Spinner = () => {
+export const Spinner = () => {
   return (
     <div className={styles.loaderContainer}>
       <ClipLoader css={styles.override} size={size} />
     </div>
   );
 };
-
-export default Spinner;

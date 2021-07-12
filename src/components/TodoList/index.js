@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ListItem from '../ListItem/index';
+import { ListItem } from '../../components';
 
-const TodoList = () => {
+export const TodoList = () => {
   const tasks = useSelector(state => state.todo.tasks);
   return (
     <>
@@ -15,5 +15,3 @@ const TodoList = () => {
     </>
   );
 };
-
-export default TodoList;

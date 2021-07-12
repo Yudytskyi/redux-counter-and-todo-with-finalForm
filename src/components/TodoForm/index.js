@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import styles from './styles.module.scss';
 import { createTodoAddTask } from '../../Redux/actions/todo';
 
-const TodoForm = () => {
+export const TodoForm = () => {
   const dispatch = useDispatch();
   const addTask = taskName => dispatch(createTodoAddTask(taskName));
 
@@ -51,5 +51,3 @@ const TodoForm = () => {
     />
   );
 };
-
-export default TodoForm;
