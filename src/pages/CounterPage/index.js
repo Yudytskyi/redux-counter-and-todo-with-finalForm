@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  createCounterIncrementAction,
-  createCounterDecrementAction,
-  createCounterSetStepAction,
-} from '../../Redux/actions/counter';
+import { bindActionCreators } from 'redux';
+import * as counterActionCreators from '../../Redux/actions/counter';
 import styles from './styles.module.scss';
 
 const CounterPage = () => {
-  const value = useSelector(state => state.counter.value);
-  const step = useSelector(state => state.counter.step);
+  useEffect(() => {
+    document.getElementById('logoLink').setAttribute('href', '/clock.png');
+    document.getElementById('title').innerHTML = 'Counter';
+  }, [null]);
 
+  const { value, step } = useSelector(state => state.counter);
   const dispatch = useDispatch();
-  const increment = () => dispatch(createCounterIncrementAction());
-  const decrement = () => dispatch(createCounterDecrementAction());
-  const setStep = step => dispatch(createCounterSetStepAction(step));
+  const { increment, decrement, setStep } = bindActionCreators(
+    counterActionCreators,
+    dispatch
+  );
 
   return (
     <main className={styles.page}>
