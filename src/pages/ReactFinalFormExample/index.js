@@ -9,7 +9,9 @@ const onSubmit = values => {
 
 const ReactFinalFormExample = () => {
   useEffect(async () => {
-    document.getElementById('logoLink').setAttribute('href', '/Squadhelp.png');
+    document
+      .getElementById('logoLink')
+      .setAttribute('href', '/EuroStandart_logo.png');
     document.getElementById('title').innerHTML = 'React Final Form';
   }, [null]);
 
