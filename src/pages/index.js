@@ -6,3 +6,4 @@ export const TodoPage = lazy(() => import('./TodoPage'));
 export const ReactFinalFormExample = lazy(() =>
   import('./ReactFinalFormExample')
 );
+export const WizardPage = lazy(() => import('./WizardPage'));

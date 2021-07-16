@@ -6,6 +6,7 @@ import {
   TodoPage,
   ReactFinalFormExample,
   CounterPage,
+  WizardPage,
 } from './pages';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/todo" component={TodoPage} />
           <Route path="/counter" component={CounterPage} />
           <Route path="/example" component={ReactFinalFormExample} />
+          <Route path="/wizard" component={WizardPage} />
           <Route path="/" exact component={HomePage} />
         </Switch>
       </Suspense>

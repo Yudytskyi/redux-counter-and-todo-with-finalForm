@@ -14,7 +14,10 @@ const HomePage = () => {
             <a href={'/todo'}>Todo Page</a>
           </li>
           <li>
-            <a href={'/example'}>React Final Form Example</a>
+            <a href={'/example'}>Final Form</a>
+          </li>
+          <li>
+            <a href={'/wizard'}>Wizard Form</a>
           </li>
         </ul>
       </nav>
